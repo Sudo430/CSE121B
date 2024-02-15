@@ -1,16 +1,11 @@
 let info = {
-    latitude: 41.79124,
-    longitude: 	-111.83391
+    latitude: 40.75657,
+    longitude: 	-111.8930
 }
 
 let weatherData;
 
 function buildWeatherUrl(){
-
-    info.latitude = document.querySelector("#Latitude").value;
-    info.longitude = document.querySelector("#Longitude").value;
-
-
     return `https://api.open-meteo.com/v1/forecast?latitude=${info.latitude}&longitude=${info.longitude}&current=temperature_2m,cloud_cover,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto&forecast_days=1`
 }
 
@@ -25,18 +20,28 @@ function updateElements(){
 }
 
 async function getWeather(){
-
-
-
-
     let response = await fetch(buildWeatherUrl());
 
     if(response.ok){
         weatherData = await response.json();
-        console.log(weatherData);
+        //console.log(weatherData);
         updateElements();
     }
 }
 
+function updateInfo(){
+    info.latitude = document.querySelector("#Latitude").value;
+    info.longitude = document.querySelector("#Longitude").value;
+
+    localStorage.setItem("weatherInfo", JSON.stringify(info));
+    getWeather(buildWeatherUrl());
+
+}
+
+
+if(localStorage.getItem("weatherInfo") !== null){
+    info = JSON.parse(localStorage.getItem("weatherInfo"));
+}
+
 getWeather(buildWeatherUrl());
-document.querySelector("#updateWeather").addEventListener("click",getWeather)
+document.querySelector("#updateWeather").addEventListener("click", updateInfo)

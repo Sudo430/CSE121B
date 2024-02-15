@@ -5,16 +5,19 @@ let bookmarkslist = [];
 //adds a new bookmark
 function addBookmark(){
     //get the value from the bookmark input box
-    let inputBox = document.querySelector("#newBookmarkTextBox").value;
+    let url = document.querySelector("#newBookmarkTextBoxUrl").value;
+    let title = document.querySelector("#newBookmarkTextBoxTitle").value;
 
     let bookmark = {
-        url: inputBox,
+        title: title,
+        url: url,
         num: bookmarkslist.length,
     };
 
     //add value to the bookmarks array and save bookmarks to localStrourage
     bookmarkslist.push(bookmark);
     saveBookmarks(bookmarkslist);
+    console.log(bookmarkslist);
 
     //update the html list
     renderBookmarks();
@@ -32,7 +35,7 @@ function renderBookmarks(){
     bookmarkslist.forEach(element => {
         let li = document.createElement("li");
 
-        li.innerHTML = `<a href="${element.url}" data="${element.num}"> ${element.url}</a>`
+        li.innerHTML = `<a href="${element.url}" data="${element.num}"> ${element.title}</a>`
 
         let deleteButton = document.createElement("button")
         deleteButton.innerText = "Delete"

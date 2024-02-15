@@ -9,10 +9,14 @@
     
     <div id="bookmarks">
         <h2>Bookmarks</h2>
-        <label for="addBookmark">url</label>
-        <input name="addbookmark" id="newBookmarkTextBox" type ="url">
-        <input name="addbookmark" id="addButton" type="button" value="Add">
-        
+        <form>
+            <label for="addBookmarkTitle">Title</label>
+            <input name="addbookmarkTitle" id="newBookmarkTextBoxTitle" type ="text">
+            <label for="addBookmarkUrl">url</label>
+            <input name="addbookmarkUrl" id="newBookmarkTextBoxUrl" type ="url">
+            <input id="addButton" type="button" value="Add">
+        </form>
+
         <ul id="bookmarkList">
 
         </ul>
@@ -21,13 +25,15 @@
 
     <div>
         <h2>Weather</h2><p></p>
-        <label for="Lat.">Latitude</label>
-        <input name="Lat." id="Latitude" type="number">
+        <form>
+            <label for="Lat.">Latitude</label>
+            <input name="Lat." id="Latitude" type="number">
 
-        <label for="Lon.">Longitude</label>
-        <input name="Lon." id="Longitude" type="number">
+            <label for="Lon.">Longitude</label>
+            <input name="Lon." id="Longitude" type="number">
 
-        <input id="updateWeather" type="button" value="Update">
+            <input id="updateWeather" type="button" value="Update">
+        </form>
         
         <div id="weather">
 
