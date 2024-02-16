@@ -45,5 +45,5 @@ if(localStorage.getItem("weatherInfo") !== null){
     info = JSON.parse(localStorage.getItem("weatherInfo"));
 }
 
-getWeather(buildWeatherUrl());
-document.querySelector("#updateWeather").addEventListener("submit", updateInfo);
+getWeather();
+document.querySelector("#updateWeather").addEventListener("click", updateInfo);
