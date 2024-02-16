@@ -5,13 +5,12 @@ let bookmarkslist = [];
 //adds a new bookmark
 function addBookmark(){
     //get the value from the bookmark input box
-    let url = document.querySelector("#newBookmarkTextBoxUrl").value;
-    let title = document.querySelector("#newBookmarkTextBoxTitle").value;
+    let url = document.querySelector("#BookmarkUrl").value;
+    let title = document.querySelector("#BookmarkTitle").value;
 
     let bookmark = {
         title: title,
         url: url,
-        num: bookmarkslist.length,
     };
 
     //add value to the bookmarks array and save bookmarks to localStrourage
@@ -32,10 +31,10 @@ function renderBookmarks(){
     htmlList.innerHTML = "";
 
     //add each item in bookmarks as a list item
-    bookmarkslist.forEach(element => {
+    for(let i = 0; i < bookmarkslist.length; i++){
         let li = document.createElement("li");
 
-        li.innerHTML = `<a href="${element.url}" data="${element.num}"> ${element.title}</a>`
+        li.innerHTML = `<a href="${bookmarkslist[i].url}" data="${i}"> ${bookmarkslist[i].title}</a>`
 
         let deleteButton = document.createElement("button")
         deleteButton.innerText = "Delete"
@@ -45,7 +44,7 @@ function renderBookmarks(){
         htmlList.appendChild(li);
 
 
-    });
+    };
     
 }
 
@@ -53,7 +52,9 @@ function renderBookmarks(){
 function deleteBookmark(data){
 
     let bookmark = data.target.parentElement;
-    bookmarkslist.pop(bookmark.childNodes[0].getAttribute("data"));
+    let indexToRemove = bookmark.childNodes[0].getAttribute("data");
+    bookmarkslist.splice(parseInt(indexToRemove), 1);
+
     saveBookmarks(bookmarkslist);
     renderBookmarks();
     
@@ -72,4 +73,24 @@ if(localStorage.getItem("bookmarks") !== null){
 
 
 
+function sortBookmarks() {
+    bookmarkslist.sort((a, b) => {
+    const titleA = a.title.toUpperCase();
+    const titleB = b.title.toUpperCase();
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
+      return 1;
+    }
+  
+    return 0;
+  })
+
+  renderBookmarks();
+}
+
+
+
 document.querySelector("#addButton").addEventListener("click", addBookmark)
+document.querySelector("#sortButton").addEventListener("click", sortBookmarks);

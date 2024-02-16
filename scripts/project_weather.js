@@ -13,6 +13,9 @@ function buildWeatherUrl(){
 function updateElements(){
     let weather = document.querySelector("#weather");
     weather.innerHTML = `
+    Current Location:<br>
+    &ensp;&ensp;&ensp;-Latitude: ${info.latitude}<br>
+    &ensp;&ensp;&ensp;-Longitude: ${info.longitude}<br><br>
     Temprature: ${weatherData.current.temperature_2m} ${weatherData.current_units.temperature_2m}<br>
     Wind Speed: ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}<br>
     Clould Cover: ${weatherData.current.cloud_cover} ${weatherData.current_units.cloud_cover}
@@ -24,7 +27,6 @@ async function getWeather(){
 
     if(response.ok){
         weatherData = await response.json();
-        //console.log(weatherData);
         updateElements();
     }
 }
@@ -44,4 +46,4 @@ if(localStorage.getItem("weatherInfo") !== null){
 }
 
 getWeather(buildWeatherUrl());
-document.querySelector("#updateWeather").addEventListener("click", updateInfo)
+document.querySelector("#updateWeather").addEventListener("submit", updateInfo);

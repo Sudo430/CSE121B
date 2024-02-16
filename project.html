@@ -4,20 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Project</title>
+    <link rel="stylesheet" href="styles/project.css">
+    
 </head>
 <body>
+
+    <h1>Welcome</h1>
     
     <div id="bookmarks">
         <h2>Bookmarks</h2>
-        <form>
-            <label for="addBookmarkTitle">Title</label>
-            <input name="addbookmarkTitle" id="newBookmarkTextBoxTitle" type ="text">
-            <label for="addBookmarkUrl">url</label>
-            <input name="addbookmarkUrl" id="newBookmarkTextBoxUrl" type ="url">
-            <input id="addButton" type="button" value="Add">
+        
+        <form >
+            
+                
+            <label for="BookmarkTitle">Title:</label>
+            <input name="bookmarkTitle" id="BookmarkTitle" type ="text">
+        
+        
+            <label for="BookmarkUrl">url:</label>
+            <input name="bookmarkUrl" id="BookmarkUrl" type ="url">
+        
+        
+            <input class="button" id="addButton" type="submit" value="Add">
+                
+            </ul>
         </form>
-
-        <ul id="bookmarkList">
+        <button id="sortButton">Sort</button>
+        <ul id="bookmarkList" class="bookmarkListc">
 
         </ul>
         
@@ -26,13 +39,14 @@
     <div>
         <h2>Weather</h2><p></p>
         <form>
-            <label for="Lat.">Latitude</label>
+            <label for="Latitude">Latitude</label>
             <input name="Lat." id="Latitude" type="number">
-
-            <label for="Lon.">Longitude</label>
+        
+            <label for="Longitude">Longitude</label>
             <input name="Lon." id="Longitude" type="number">
-
-            <input id="updateWeather" type="button" value="Update">
+        
+            <input class="button" id="updateWeather" type="button" value="Update">
+             
         </form>
         
         <div id="weather">
